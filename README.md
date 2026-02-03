@@ -7,23 +7,23 @@ A PHP-based tool designed to help IT departments conduct controlled phishing awa
 This tool enables IT security teams to:
 - Test employee awareness of phishing attacks
 - Track which users click on suspicious links
-- Conduct security awareness training exercises
+- Conduct targeted security awareness training exercises
 - Identify employees who may need additional security training
 
 ## How It Works
 
-The script reads employee data from a CSV file and generates personalized fake LinkedIn invitation emails. Each email contains:
-- Personalized greeting using the employee's first and last name
+The script reads employee data from a CSV file and generates personalised fake LinkedIn invitation emails. Each email contains:
+- Personalised greeting using the employee's first and last name
 - Realistic LinkedIn invitation format
-- Tracking links that log user interactions
+- Tracking links that are logged by the web server
 
 When an employee clicks any link in the email, their interaction is logged via a unique tracking hash, allowing IT departments to identify which employees fell for the simulated phishing attempt.
 
 ## Features
 
-- **Personalized emails**: Each message addresses the recipient by name
+- **Personalised emails**: Each message addresses the recipient by name
 - **Tracking mechanism**: Uses RIPEMD-160 hashing of email addresses to create unique tracking identifiers
-- **Realistic design**: Mimics actual LinkedIn invitation emails
+- **Realistic design**: Mimics actual LinkedIn invitation emails, although any HTML email can be used, it doesn't need to be LinkedIn
 - **Safe testing**: Includes demonstration mode (emails are echoed rather than sent by default)
 
 ## Requirements
@@ -50,7 +50,7 @@ Jane,Doe,jane.doe@company.com
 1. Upload `phishingexercise.php` to your web server
 2. Create a `userlist.csv` file in the same directory
 3. Ensure the web server has read permissions for the CSV file
-4. Set up a tracking endpoint at `https://www.example.org/tracking.php`
+4. (Optional) Set up a tracking endpoint at `https://www.example.org/tracking.php`
 
 ## Configuration
 
@@ -61,10 +61,10 @@ Before using the tool, update the following variables in the code:
 $mailheaders = "From: example@example.org \r\n";
 $mailheaders .= "Reply-To: example@example.org \r\n";
 ```
-Replace `example@example.org` with your organization's email address.
+Replace `example@example.org` with a suitable email address that targets the sender.
 
 ### Tracking URLs
-Replace all instances of `https://www.example.org/tracking.php` with your actual tracking endpoint URL.
+(Optional, if used) Replace all instances of `https://www.example.org/tracking.php` with your actual tracking endpoint URL.
 
 ### Sender Profile
 Update the sender's name and details in the email template:
@@ -109,7 +109,7 @@ Change it to:
 mail($mailto, $mailsubject, $mailmessage, $mailheaders);
 ```
 
-**Warning**: Ensure you have proper authorization before sending phishing exercise emails to employees.
+**Warning**: Ensure you have proper authorisation before sending phishing exercise emails to employees.
 
 ## Tracking Implementation
 
@@ -117,12 +117,12 @@ mail($mailto, $mailsubject, $mailmessage, $mailheaders);
 
 1. Each user's email address is hashed using RIPEMD-160
 2. The hash is appended to all links as a query parameter: `?ref=[hash]`
-3. When a user clicks any link, they're redirected to your tracking endpoint
+3. When a user clicks any link, the web server log will create an entry as the URL will not exist, or alternatively redirected to your tracking endpoint if configured
 4. The tracking endpoint logs the hash and redirects the user appropriately
 
 ### Setting Up Tracking
 
-Create a `tracking.php` file on your server:
+(Optional) Create a `tracking.php` file on your server:
 
 ```php
 <?php
@@ -143,7 +143,7 @@ exit;
 ?>
 ```
 
-### Analyzing Results
+### Analysing Results
 
 After the exercise, you can:
 1. Review server logs to see which tracking hashes were accessed
@@ -155,14 +155,14 @@ After the exercise, you can:
 
 ### Legal and Ethical Requirements
 
-- **Authorization**: Obtain written approval from management before conducting exercises
+- **Authorisation**: Obtain written approval from management before conducting exercises
 - **HR Coordination**: Work with HR to ensure exercises comply with company policies
 - **Employee Communication**: Consider informing employees that periodic security tests will occur (without specific timing)
 - **Privacy**: Handle tracking data responsibly and in compliance with data protection regulations
 
 ### Best Practices
 
-1. **Scope Control**: Only send to employees within your organization
+1. **Scope Control**: Only send to employees within your organisation
 2. **Safe Landing Page**: Redirect clickers to an educational page, not a malicious-looking site
 3. **No Credential Harvesting**: Never attempt to collect passwords or sensitive information
 4. **Reasonable Timing**: Avoid sending during high-stress periods or outside business hours
@@ -175,13 +175,13 @@ After the exercise, you can:
 - Protect the CSV file with appropriate file permissions (600 or 640)
 - Use HTTPS for all tracking URLs
 - Implement rate limiting to prevent abuse
-- Sanitize all output to prevent XSS vulnerabilities
+- Sanitise all output to prevent XSS vulnerabilities
 
-## Customization
+## Customisation
 
 ### Email Template
 
-The email uses a HTML template clone of LinkedIn's design. Although there is no limit to the amount of possible templates you could target, for example other social media organisations. You can customize:
+The email uses a HTML template clone of LinkedIn's design. Although there is no limit to the amount of possible templates you could target, for example other social media organisations. You can customise:
 - Sender name and profile information
 - Profile picture URL (`johndoe.png`)
 - LinkedIn logo URLs
@@ -249,13 +249,13 @@ Message:
 
 ## Legal Disclaimer
 
-This tool is intended for authorized security awareness training only. Unauthorized use of this tool to send phishing emails may violate:
+This tool is intended for authorised security awareness training only. Unauthorised use of this tool to send phishing emails may violate:
 - Computer Fraud and Abuse Act (CFAA)
 - CAN-SPAM Act
 - GDPR and other privacy regulations
 - Company policies and employment agreements
 
-Always obtain proper authorization and work with legal counsel before conducting phishing exercises.
+Always obtain proper authorisation and work with legal counsel before conducting phishing exercises.
 
 ## Future Enhancements
 
@@ -274,4 +274,4 @@ For issues or questions about this tool, contact your IT security team.
 
 ## License
 
-This tool is provided for educational and authorized security testing purposes only. Use at your own risk and in compliance with all applicable laws and regulations.
+This tool is provided for educational and authorised security testing purposes only. Use at your own risk and in compliance with all applicable laws and regulations.
