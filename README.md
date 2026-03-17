@@ -64,7 +64,7 @@ $mailheaders .= "Reply-To: example@example.org \r\n";
 Replace `example@example.org` with a suitable email address that targets the sender.
 
 ### Tracking URLs
-(Optional, if used) Replace all instances of `https://www.example.org/tracking.php` with your actual tracking endpoint URL.
+Replace all instances of `https://www.example.org/tracking.php` with your actual tracking endpoint URL.
 
 ### Sender Profile
 Update the sender's name and details in the email template:
