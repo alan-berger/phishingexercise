@@ -244,8 +244,6 @@ Message:
 
 - Requires properly configured PHP mail server
 - May be flagged by spam filters
-- Tracking relies on users having images/external content enabled
-- Some email clients may block external images (LinkedIn logos)
 
 ## Legal Disclaimer
 
