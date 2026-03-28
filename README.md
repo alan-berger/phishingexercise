@@ -2,6 +2,13 @@
 
 A PHP-based tool designed to help IT departments conduct controlled phishing awareness exercises by sending simulated LinkedIn invitation emails to employees.
 
+![PHP Version](https://img.shields.io/badge/PHP-%3E%3D5.3-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Purpose](https://img.shields.io/badge/purpose-authorised%20security%20awareness%20training-yellow)
+![No Dependencies](https://img.shields.io/badge/dependencies-none-brightgreen)
+![Tracking](https://img.shields.io/badge/tracking-RIPEMD--160%20per--user%20hash-informational)
+![Mode](https://img.shields.io/badge/default%20mode-demo%20%28no%20emails%20sent%29-lightgrey)
+
 ## Purpose
 
 This tool enables IT security teams to:
